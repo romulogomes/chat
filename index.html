@@ -10,10 +10,18 @@
   <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=3d2ca686-5123-4065-a58d-fb251435cacd"> </script>
   <!-- End of mercadodiferente Zendesk Widget script -->
   <script type="text/javascript">
+    zE('messenger', 'open');
+    zE("messenger", "logoutUser")
     zE("messenger:on", "open", function () {
       console.log(`You have opened the messaging Web Widget Subject drivers`)
     })
-    zE("messenger:set", "conversationTags", ["Motorista-teste", "Pedido-20230807", "Problema-X"])
+    zE("messenger:set", "conversationTags", ["Motorista-teste2", "Pedido-202308071", "Problema-Y"])
+    //zE("messenger:set", "conversationFields", [
+    //  { id: "8312691629965", value: 100.50 }
+    //])
+    zE("messenger", "loginUser", function (callback) {
+      callback("eyJraWQiOiJhcHBfNjUxZDZmYWQwMDdmM2UyYzYyMzk3OTA2IiwiYWxnIjoiSFMyNTYifQ.eyJzY29wZSI6InVzZXIiLCJleHRlcm5hbF9pZCI6IjEyMzQ1Njc4IiwibmFtZSI6IlJvbXVsbyIsImVtYWlsIjoicm9tdWxvZ29tZXM5M0BnbWFpbC5jb20ifQ.yJ38x5sH2v3qYjh6BXE8IVpriUnGfg21LK9VEtr68AU")
+    })
   </script>
   
 </body>
