@@ -43,6 +43,7 @@
     console.log("pedido", pedido)
 
     zE("messenger", "logoutUser")
+    zE("messenger", "open")
     
     zE("messenger:on", "open", function () {
       setTimeout(function(){ exec() }, 3000);
