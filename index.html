@@ -36,6 +36,7 @@
     const params = new URLSearchParams(document.location.search);
     const name = params.get("name");
     const token = params.get("token")  || tokenDefault;
+    const reason = params.get("reason");
     const orderNumber = !params.get("pedido") || params.get("pedido") === "undefined" ? "" : params.get("pedido");
 
     console.log("name", name)
@@ -56,7 +57,7 @@
     zE("messenger", "loginUser", function (callback) {
       callback(token)
     })
-    zE("messenger:set", "conversationTags", [name, orderNumber, "chat-app-motorista"].filter(n => n))
+    zE("messenger:set", "conversationTags", [name, orderNumber, reason,  "chat-app-motorista"].filter(n => n))
   </script> 
   
 </body>
