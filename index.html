@@ -3,25 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat DIF </title>
+  <title>Chat DIF 320</title>
 </head>
 <body>
   <!-- Start of mercadodiferente Zendesk Widget script -->
   <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=3d2ca686-5123-4065-a58d-fb251435cacd"> </script>
   <!-- End of mercadodiferente Zendesk Widget script -->
   <script type="text/javascript">
-    zE('messenger', 'open');
+    function exec() {
+      var a = document.querySelector('iframe[title="Janela de mensagens"]')
+      const iframeContent = a.contentWindow;
+      var b = iframeContent.document.getElementById("2val-field_1.3.10--input")
+      b.value = "MOTORISTA XXX \nPEDIDO 20073584 \nProblema X"
+      
+      var enterEvent = new KeyboardEvent("keydown", {
+        key: "Enter",
+        code: "Enter",
+        keyCode: 77,
+        which: 77,
+        charCode: 77,
+        bubbles: true,
+        cancelable: true,
+      });
+      
+      b.focus();
+      b.dispatchEvent(enterEvent);
+    }
+
+    //temp
+    const tokenDefault = "eyJraWQiOiJhcHBfNjUxZDZmYWQwMDdmM2UyYzYyMzk3OTA2IiwiYWxnIjoiSFMyNTYifQ.eyJzY29wZSI6InVzZXIiLCJleHRlcm5hbF9pZCI6IjEyMzQ1Njc4IiwibmFtZSI6IlJvbXVsbyIsImVtYWlsIjoicm9tdWxvZ29tZXM5M0BnbWFpbC5jb20iLCJjb252ZXJzYSI6NX0.kx2QPghl5_-k70tTDmSGFGV-sKFnfl56ywV_dePnLSs"
+
+    const params = new URLSearchParams(document.location.search);
+    const name = params.get("name");
+    const token = params.get("token")  || tokenDefault;
+    const pedido = params.get("pedido") || "default";
+
+    console.log("name", name)
+    console.log("token", token)
+    console.log("pedido", pedido)
+
+    zE("messenger", "logoutUser")
+    
     zE("messenger:on", "open", function () {
-      console.log(`You have opened the messaging Web Widget Subject drivers`)
+      setTimeout(function(){ exec() }, 3000);
     })
-    zE("messenger:set", "conversationTags", ["Motorista-teste2", "Pedido-202308071", "Problema-Y"])
     //zE("messenger:set", "conversationFields", [
     //  { id: "8312691629965", value: 100.50 }
     //])
     zE("messenger", "loginUser", function (callback) {
-      callback("eyJraWQiOiJhcHBfNjUxZDZmYWQwMDdmM2UyYzYyMzk3OTA2IiwiYWxnIjoiSFMyNTYifQ.eyJzY29wZSI6InVzZXIiLCJleHRlcm5hbF9pZCI6IjEyMzQ1Njc4IiwibmFtZSI6IlJvbXVsbyIsImVtYWlsIjoicm9tdWxvZ29tZXM5M0BnbWFpbC5jb20ifQ.yJ38x5sH2v3qYjh6BXE8IVpriUnGfg21LK9VEtr68AU")
+      callback(token)
     })
-  </script>
+    zE("messenger:set", "conversationTags", [name, pedido, "chat-app-motorista"].filter(n => n))
+  </script> 
   
 </body>
 </html>
